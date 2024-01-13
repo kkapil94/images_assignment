@@ -63,7 +63,7 @@ export const login = async (req, res, next) => {
   } else {
     return next(new Error("Please enter the valid credentials"));
   }}catch(err){
-    console.log(err);
+    return next(new Error("Please enter the valid credentials"));
   }
 };
 
