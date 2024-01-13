@@ -1,14 +1,47 @@
-import { useState } from 'react'
-import AuthPage from "./pages/AuthPage"
+import {Outlet, createBrowserRouter} from "react-router-dom"
+import {ToastContainer} from "react-toastify"
+import 'react-toastify/dist/ReactToastify.css';
 import './App.css'
+import SignIn from "./pages/SignIn"
+import SignUp from "./pages/SignUp"
+import Navbar from "./component/NAvbar"
 
-function App() {
-
-  return (
+const AppLayout = ()=>{
+  return(
     <>
-      <AuthPage/>
+      <Navbar/>
+      <Outlet/>
+      <ToastContainer
+        position="bottom-left"
+        autoClose={3000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss={false}
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
     </>
   )
 }
 
-export default App
+const router = createBrowserRouter([
+  {
+    path:"/",
+    element:<AppLayout/>,
+    children:[
+      {
+        path:"/login",
+        element:<SignIn/>
+      },
+      {
+        path:"/register",
+        element:<SignUp/>
+      }
+    ]
+  }
+])
+
+export default router
