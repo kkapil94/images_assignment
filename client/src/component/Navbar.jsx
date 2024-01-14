@@ -1,11 +1,16 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import AddImageModal from "./AddImageModal";
 
 export default function Navbar() {
   const { pathname } = useLocation();
+  const navigate = useNavigate()
   const user = localStorage.getItem("user_token");
-  console.log(user);
+  const handleLogout = ()=>{
+    localStorage.removeItem("user_token");
+    navigate("/login")
+  }
+
   return (
     <>
       <nav>
@@ -17,9 +22,9 @@ export default function Navbar() {
           {user ? (
             <div className="flex gap-4">
             <AddImageModal/>
-            <div className="w-36 h-8 cursor-pointer flex justify-center items-center rounded-2xl bg-[#5ccebf] text-white">
+            <button onClick={handleLogout} className="w-36 h-8 cursor-pointer flex justify-center items-center rounded-2xl bg-[#5ccebf] text-white">
               Logout
-            </div>
+            </button>
             </div>
           ) : (
             <div className="flex mr-3">

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
@@ -7,6 +7,7 @@ export default function SignIn() {
 
   const notify = toast
   const navigate = useNavigate()
+  const userToken = localStorage.getItem("user_token")
   const [user, setUser] = useState({
     email: "",
     password: ""
@@ -29,7 +30,12 @@ export default function SignIn() {
       notify.error(err?.response?.data?.msg)
       console.log(err);}
   }
-
+  useEffect(()=>{
+    if(userToken)
+    {
+      navigate("/")
+    }
+  })
 
   return (
     <>

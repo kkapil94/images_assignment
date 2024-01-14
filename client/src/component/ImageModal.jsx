@@ -1,14 +1,13 @@
 import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 export default function ImageModal({closeModal}) {
 
   const [pre,setPre] = useState(null)
-  const navigate = useNavigate()
   const formRef = useRef()
   const notify = toast
+  const userToken = localStorage.getItem("user_token")
   const [image, setImage] = useState({
     name: "",
     description: "",
@@ -26,22 +25,21 @@ export default function ImageModal({closeModal}) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(formRef.current);
-    console.log('ok');
     try {
-      const {data} = await axios.post(`http://localhost:4000/api/v1/image/register`, formData, {
+      const {data} = await axios.post(`http://localhost:4000/api/v1/image/add`, formData, {
         headers: {
+          "Authorization": `Bearer ${userToken}`,
           "Content-Type": "multipart/form-data",
         },
       });
       if (data?.success) {
-        setUser({
+        setImage({
         name: "",
-        email: "",
-        password: "",
-        avatar:''
+        description: "",
+        img:''
       })
-        notify.success("Registered successfully");
-        navigate("/login")
+        notify.success("Image added successfully");
+        closeModal()
       }
     } catch (err) {
       console.log(err);

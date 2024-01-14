@@ -15,6 +15,7 @@ export const addImage = async (req, res) => {
     const newImg = await Image.create({
       name,
       description,
+      url:result.secure_url,
       owner: req.user.id,
       avatar: result.secure_url,
     });
@@ -24,6 +25,7 @@ export const addImage = async (req, res) => {
         newImg,
       })
   } catch (err) {
+    console.log(err);
     return next(new Error("Please enter the valid credentials"))
   }
 };

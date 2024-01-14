@@ -11,7 +11,6 @@ const imageSchema = new mongoose.Schema({
     },
     views:{
         type:Number,
-        required:true
     },
     url:{
         type:String,
