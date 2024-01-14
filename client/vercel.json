@@ -1,9 +1,13 @@
 {
-    "routes": [{ "src": "/[^.]+", "dest": "/", "status": 200 }],
     "rewrites": [
         {
             "source": "/api/(.*)",
             "destination": "https://images-assignment.onrender.com"
+        },
+        {
+            "src": "/[^.]+",
+            "dest": "/",
+            "status": 200
         }
     ]
 }
