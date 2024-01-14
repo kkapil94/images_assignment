@@ -34,7 +34,7 @@ export default function HomePage() {
   };
 
   useEffect(() => {
-    if(!user)
+    if(!userToken)
     {
       navigate("/login")
     }
