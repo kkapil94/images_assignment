@@ -1,7 +1,20 @@
+import axios from "axios";
 import React from "react";
 import { Link } from "react-router-dom";
 
 export default function ImageCard({ image}) {
+  const userToken = localStorage.getItem("user_token")
+
+  const handleViews = async(id)=>{
+    const data = await axios.post(`http://localhost:4000/api/v1/image/inc-view/${id}`,{},{
+      headers:{
+        "Authorization":`Bearer ${userToken}`
+      }
+    })
+    console.log(data);
+  }
+
+
   return (
     <>
       <div className="border-2 xs:max-sm:w-[17rem] sm:max-md:w-80 w-[23rem]  bg-[#0d1b2a] border-solid border-white rounded-2xl">
@@ -20,8 +33,8 @@ export default function ImageCard({ image}) {
             {image.description}
           </p>
           <div className="my-6 w-full flex justify-between items-center">
-            <Link to=":id">
-              <button className="group rounded-3xl bg-white  xs:max-md:text-sm xs:max-md:px-2 px-2">
+            <Link to={"image/"+image._id}>
+              <button onClick={()=>handleViews(image._id)} className="group rounded-3xl bg-white  xs:max-md:text-sm xs:max-md:px-2 px-2">
                 Check it out
                 <img
                   className="transition-all duration-150 ease-in-out inline group-hover:relative relative left-0 group-hover:left-1 ml-3 xs:max-md:w-4"

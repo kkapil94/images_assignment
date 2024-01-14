@@ -2,7 +2,7 @@ import Image from "../model/imagesModel.js";
 import cloudinary from "cloudinary";
 import { getDataUri } from "../utils/dataUri.js";
 
-export const addImage = async (req, res) => {
+export const addImage = async (req, res, next) => {
   try {
     const { name, description } = req.body;
     if (!name || !description) {
@@ -29,21 +29,44 @@ export const addImage = async (req, res) => {
   }
 };
 
-export const getAllImages = async (req, res) => {
+export const getAllImages = async (req, res, next) => {
   try {
     const userId = req.user.id;
     const images = await Image.find({ owner: userId });
     res.status(200).json({
-      success:true,
-      images
-    })
+      success: true,
+      images,
+    });
   } catch (err) {
     return next(new Error(err));
   }
 };
 
-export const getImage = async (req, res) => {
-  const { imageId } = req.body;
-  const data = await Image.findById(imageId);
-  console.log(data);
+export const getImage = async (req, res, next) => {
+  try{const { id } = req.params;
+  if (!id) {
+    res.status(400);
+    return next(new Error("Image id is not present"));
+  }
+  const image = await Image.findById(id);
+  res.status(200).json({success:true,image})}
+  catch(err){
+    return next(new Error(err));
+  }
+};
+
+export const incView = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    if (!id) {
+      res.status(400);
+      return next(new Error("Image id is not present"));
+    }
+    const data = await Image.findById(id);
+    data.views += 1;
+    await data.save();
+    res.status(200).json({success:true,data})
+  } catch (err) {
+    return next(new Error(err));
+  }
 };

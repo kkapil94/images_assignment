@@ -4,8 +4,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import './App.css'
 import SignIn from "./pages/SignIn"
 import SignUp from "./pages/SignUp"
-import Navbar from "./component/NAvbar"
+import Navbar from "./component/Navbar"
 import HomePage from "./pages/HomePage";
+import ImagePage from "./pages/ImagePage";
 
 const AppLayout = ()=>{
   return(
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
       {
         path:"/register",
         element:<SignUp/>
+      },
+      {
+        path:"/image/:imgId",
+        element:<ImagePage/>
       }
     ]
   }

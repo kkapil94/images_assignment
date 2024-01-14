@@ -1,5 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
+import {useDispatch} from "react-redux"
+import {fetchImages} from "../features/images/imageSlice"
 import { toast } from "react-toastify";
 
 export default function ImageModal({closeModal}) {
@@ -7,6 +9,7 @@ export default function ImageModal({closeModal}) {
   const [pre,setPre] = useState(null)
   const formRef = useRef()
   const notify = toast
+  const dispatch = useDispatch()
   const userToken = localStorage.getItem("user_token")
   const [image, setImage] = useState({
     name: "",
@@ -38,6 +41,7 @@ export default function ImageModal({closeModal}) {
         description: "",
         img:''
       })
+        dispatch(fetchImages());
         notify.success("Image added successfully");
         closeModal()
       }

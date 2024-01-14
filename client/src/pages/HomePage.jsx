@@ -12,6 +12,7 @@ export default function HomePage() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
+  const { images } = useSelector((state) => state.images);
   const getUser = async () => {
     try {
       const { data } = await axios.get(
@@ -49,7 +50,7 @@ export default function HomePage() {
             </div>
             <div className="mt-8 flex gap-8 ">
               <span className="w-32 p-2 text-center text-sm rounded-2xl text-white bg-[#5ccebf]">
-                100 images
+                {images.length} images
               </span>
               <span className="w-32 p-2 text-center text-sm rounded-2xl text-white bg-[#5ccebf]">
                 100 views
