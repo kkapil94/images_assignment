@@ -76,3 +76,22 @@ export const searchUser = async (req, res) => {
   res.status(200).json({ success: true, users });
 };
 
+//get user
+export const getUser = async (req,res) => {
+  if(req.user)
+  {
+    const user = await User.findById(req.user.id)
+    if(!user){
+      return next(new Error("Token is not validate"));
+    }
+    res.status(200).json({
+      success:true,
+      user
+    })
+  }else{
+    res.status(400).json({
+      success:false,
+      user:null
+    })
+  }
+}

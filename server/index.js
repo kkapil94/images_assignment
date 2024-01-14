@@ -1,5 +1,6 @@
 import express from "express"
 import userRoute from "./routes/userRoute.js"
+import imageRoute from "./routes/imageRoute.js"
 import {connect}from "./utils/mongodb.js"
 import {errorHandler} from "./middleware/errorHandler.js"
 import singleUpload from "./middleware/multer.js"
@@ -24,6 +25,7 @@ connect()
 app.use(cors())
 app.use(express.json())
 app.use("/api/v1/auth",userRoute)
+app.use("/api/v1/image",imageRoute)
 app.use(singleUpload)
 app.use(isValidated)
 app.use(errorHandler)

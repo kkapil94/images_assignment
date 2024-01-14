@@ -26,8 +26,7 @@ export default function SignIn() {
         navigate("/")
       }
     }catch(err){
-      setLoading(false)
-      notify.error("Login failed!")
+      notify.error(err?.response?.data?.msg)
       console.log(err);}
   }
 

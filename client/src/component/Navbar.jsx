@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
+import AddImageModal from "./AddImageModal";
 
 export default function Navbar() {
   const { pathname } = useLocation();
@@ -14,8 +15,11 @@ export default function Navbar() {
           </span>
 
           {user ? (
+            <div className="flex gap-4">
+            <AddImageModal/>
             <div className="w-36 h-8 cursor-pointer flex justify-center items-center rounded-2xl bg-[#5ccebf] text-white">
               Logout
+            </div>
             </div>
           ) : (
             <div className="flex mr-3">
