@@ -32,7 +32,7 @@ export default function SignUp() {
     console.log('ok');
     try {
       setIsLoading(true)
-      const {data} = await axios.post(`http://localhost:4000/api/v1/auth/register`, formData, {
+      const {data} = await axios.post(`/api/v1/auth/register`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

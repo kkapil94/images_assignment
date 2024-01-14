@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
-import Loader from "../component/Loader"
 import {useDispatch} from "react-redux"
 import {fetchImages} from "../features/images/imageSlice"
 import { toast } from "react-toastify";
@@ -32,7 +31,7 @@ export default function ImageModal({closeModal}) {
     const formData = new FormData(formRef.current);
     try {
       setIsLoading(true)
-      const {data} = await axios.post(`http://localhost:4000/api/v1/image/add`, formData, {
+      const {data} = await axios.post(`/api/v1/image/add`, formData, {
         headers: {
           "Authorization": `Bearer ${userToken}`,
           "Content-Type": "multipart/form-data",

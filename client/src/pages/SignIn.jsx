@@ -23,7 +23,7 @@ export default function SignIn() {
     e.preventDefault();
     try{
       setIsLoading(true)
-      const {data} =await axios.post(`http://localhost:4000/api/v1/auth/login`,user)
+      const {data} =await axios.post(`/api/v1/auth/login`,user)
       if(data.success) {
         setIsLoading(false)
         localStorage.setItem("user_token",data.token)
