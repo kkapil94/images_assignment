@@ -5,8 +5,8 @@
             "destination": "https://images-assignment.onrender.com"
         },
         {
-            "src": "/[^.]+",
-            "dest": "/",
+            "source": "/[^.]+",
+            "destination": "/",
             "status": 200
         }
     ]
