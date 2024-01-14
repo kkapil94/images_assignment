@@ -34,6 +34,10 @@ export default function HomePage() {
   };
 
   useEffect(() => {
+    if(!user)
+    {
+      navigate("/login")
+    }
     getUser();
     dispatch(fetchImages(userToken))
   }, []);
