@@ -15,25 +15,31 @@ export const addImage = async (req, res) => {
     const newImg = await Image.create({
       name,
       description,
-      url:result.secure_url,
+      url: result.secure_url,
       owner: req.user.id,
       avatar: result.secure_url,
     });
     res.status(200).json({
-        success: true,
-        msg: "image added successfully",
-        newImg,
-      })
+      success: true,
+      msg: "image added successfully",
+      newImg,
+    });
   } catch (err) {
-    console.log(err);
-    return next(new Error("Please enter the valid credentials"))
+    return next(new Error(err));
   }
 };
 
 export const getAllImages = async (req, res) => {
-  const userId = req.user.id;
-  const data = await Image.find({ owner: userId });
-  console.log(data);
+  try {
+    const userId = req.user.id;
+    const images = await Image.find({ owner: userId });
+    res.status(200).json({
+      success:true,
+      images
+    })
+  } catch (err) {
+    return next(new Error(err));
+  }
 };
 
 export const getImage = async (req, res) => {

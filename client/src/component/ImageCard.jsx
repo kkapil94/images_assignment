@@ -1,36 +1,39 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-export default function ImageCard({ img }) {
+export default function ImageCard({ image}) {
   return (
     <>
       <div className="border-2 xs:max-sm:w-[17rem] sm:max-md:w-80 w-[23rem]  bg-[#0d1b2a] border-solid border-white rounded-2xl">
         <span>
           <img
-            className="rounded-t-2xl w-full"
-            src="https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcS4WH3Cpe1X75X4LhbHdyJo3vPEs0ufiHQhHjkqEnMjbPqViSEVI-nqF0NpeLscSR-7"
+            className="rounded-t-2xl w-full h-40 object-cover"
+            src={image.url}
             alt=""
           />
         </span>
         <div className="xs:max-md:px-4 px-6 xs:max-md:mt-0 mt-4">
           <h4 className="xs:max-md:text-sm text-xl text-white xs:max-md:my-2 my-6">
-            flowers
+            {image.name}
           </h4>
           <p className="xs:max-md:text-xs text-gray-300">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga
-            pariatur, repudiandae possimus cum doloribus, quo vitae
-            reprehenderit dignissimos nam optio explicabo qui ipsam.
+            {image.description}
           </p>
-          <div className="my-6">
-            <a href target="_blank">
-              <button className="group rounded-3xl bg-white py-1 xs:max-md:text-sm xs:max-md:px-2 px-4">
+          <div className="my-6 w-full flex justify-between items-center">
+            <Link to=":id">
+              <button className="group rounded-3xl bg-white  xs:max-md:text-sm xs:max-md:px-2 px-2">
                 Check it out
                 <img
                   className="transition-all duration-150 ease-in-out inline group-hover:relative relative left-0 group-hover:left-1 ml-3 xs:max-md:w-4"
-                  // src="/images/next.png"
+                  src="/img/next.png"
                   alt=""
                 />
               </button>
-            </a>
+            </Link>
+            <div className="flex gap-2">
+              <img className="w-6" src="/img/viewLogo.png" alt="" />
+              <span className="text-white">{image.views}</span>
+            </div>
           </div>
         </div>
       </div>
