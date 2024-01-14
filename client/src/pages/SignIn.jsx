@@ -2,11 +2,13 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import Loader from '../component/Loader';
 
 export default function SignIn() {
 
   const notify = toast
   const navigate = useNavigate()
+  const [isLoading,setIsLoading] = useState(false)
   const userToken = localStorage.getItem("user_token")
   const [user, setUser] = useState({
     email: "",
@@ -20,13 +22,16 @@ export default function SignIn() {
   const handleSubmit =async (e)=>{
     e.preventDefault();
     try{
+      setIsLoading(true)
       const {data} =await axios.post(`http://localhost:4000/api/v1/auth/login`,user)
       if(data.success) {
+        setIsLoading(false)
         localStorage.setItem("user_token",data.token)
         notify.success("Logged In successfully");
         navigate("/")
       }
     }catch(err){
+      setIsLoading(false)
       notify.error(err?.response?.data?.msg)
       console.log(err);}
   }
@@ -39,6 +44,7 @@ export default function SignIn() {
 
   return (
     <>
+      {isLoading&&<Loader/>}
       <div className='flex justify-center mt-20 mb-20'>
         <form onSubmit={handleSubmit} className='w-5/12 flex flex-col gap-8 border-2 border-solid border-gray-500 p-16 rounded-xl'>
           <div className='flex flex-col gap-1'>

@@ -2,10 +2,12 @@ import React, { useState, useRef } from 'react'
 import axios from "axios"
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import Loader from '../component/Loader';
 
 export default function SignUp() {
 
   const [pre,setPre] = useState(null)
+  const [isLoading,setIsLoading] = useState(false)
   const navigate = useNavigate()
   const formRef = useRef()
   const notify = toast
@@ -29,6 +31,7 @@ export default function SignUp() {
     const formData = new FormData(formRef.current);
     console.log('ok');
     try {
+      setIsLoading(true)
       const {data} = await axios.post(`http://localhost:4000/api/v1/auth/register`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
@@ -41,11 +44,13 @@ export default function SignUp() {
         password: "",
         avatar:''
       })
+        setIsLoading(false)
         notify.success("Registered successfully");
         navigate("/login")
       }
     } catch (err) {
       console.log(err);
+      setIsLoading(false)
       const error = err?.response?.data?.msg;
       notify(error);
     }
@@ -54,6 +59,7 @@ export default function SignUp() {
 
   return (
     <>
+    {isLoading&&<Loader/>}
       <div className='flex justify-center mt-20 mb-20'>
         <form onSubmit={handleSubmit} ref={formRef} className='w-5/12 flex flex-col gap-8 border-2 border-solid border-gray-500 p-16 rounded-xl'>
           <div className='flex flex-col gap-1'>

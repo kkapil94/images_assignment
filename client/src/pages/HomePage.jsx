@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { fetchImages } from "../features/images/imageSlice";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { setUser } from "../features/users/userSlice";
@@ -12,7 +13,7 @@ export default function HomePage() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
-  const { images } = useSelector((state) => state.images);
+  const { images,totalViews } = useSelector((state) => state.images);
   const getUser = async () => {
     try {
       const { data } = await axios.get(
@@ -33,6 +34,7 @@ export default function HomePage() {
 
   useEffect(() => {
     getUser();
+    dispatch(fetchImages(userToken))
   }, []);
 
   return (
@@ -42,7 +44,7 @@ export default function HomePage() {
           <div className="flex flex-col items-center mt-8">
             <div>
               <span>
-                <img className="w-72" src={user?.avatar} alt="" />
+                <img className="w-72 h-72 rounded-full" src={user?.avatar} alt="" />
               </span>
               <div className="text-center mt-4 text-2xl text-white">
                 {user.name}
@@ -53,7 +55,7 @@ export default function HomePage() {
                 {images.length} images
               </span>
               <span className="w-32 p-2 text-center text-sm rounded-2xl text-white bg-[#5ccebf]">
-                100 views
+                {totalViews} views
               </span>
             </div>
           </div>

@@ -1,15 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import ImageCard from "./ImageCard";
 import AddImageModal from "../component/AddImageModal"
-import { fetchImages } from "../features/images/imageSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 export default function ImagesComponent() {
-  const dispatch = useDispatch();
   const { images } = useSelector((state) => state.images);
-  useEffect(() => {
-    dispatch(fetchImages());
-  }, []);
   return (
     <>
       <section>
@@ -20,7 +15,7 @@ export default function ImagesComponent() {
           {images.length ? (
             <div className="grid justify-items-center grid-cols-3 gap-8 my-20">
               {images?.map((image) => (
-                <ImageCard image={image} />
+                <ImageCard image={image} key={image._id}/>
               ))}
             </div>
           ) : (

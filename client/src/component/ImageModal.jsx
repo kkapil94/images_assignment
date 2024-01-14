@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
+import Loader from "../component/Loader"
 import {useDispatch} from "react-redux"
 import {fetchImages} from "../features/images/imageSlice"
 import { toast } from "react-toastify";
@@ -10,6 +11,7 @@ export default function ImageModal({closeModal}) {
   const formRef = useRef()
   const notify = toast
   const dispatch = useDispatch()
+  const [isLoading,setIsLoading] = useState(false)
   const userToken = localStorage.getItem("user_token")
   const [image, setImage] = useState({
     name: "",
@@ -29,6 +31,7 @@ export default function ImageModal({closeModal}) {
     e.preventDefault();
     const formData = new FormData(formRef.current);
     try {
+      setIsLoading(true)
       const {data} = await axios.post(`http://localhost:4000/api/v1/image/add`, formData, {
         headers: {
           "Authorization": `Bearer ${userToken}`,
@@ -41,12 +44,13 @@ export default function ImageModal({closeModal}) {
         description: "",
         img:''
       })
-        dispatch(fetchImages());
+        setIsLoading(false)
+        dispatch(fetchImages(userToken));
         notify.success("Image added successfully");
         closeModal()
       }
     } catch (err) {
-      console.log(err);
+      setIsLoading(false)
       const error = err?.response?.data?.msg;
       notify(error);
     }
@@ -64,7 +68,7 @@ export default function ImageModal({closeModal}) {
   return (
     <div>
       <div onClick={closeModal} className="modal-wrapper fixed top-0 bottom-0 left-0 right-0 bg-black opacity-75"></div>
-      <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4/12 bg-[#36485e] p-4 rounded-2xl">
+      <div className="fixed z-0 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4/12 bg-[#36485e] p-4 rounded-2xl">
         <div className="flex justify-between ">
           <span className="text-lg text-slate-400">Add Image</span>
           <button onClick={closeModal}>
