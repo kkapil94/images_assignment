@@ -47,7 +47,7 @@ export default function SignIn() {
     <>
       {isLoading&&<Loader/>}
       <div className='flex justify-center mt-20 mb-20'>
-        <form onSubmit={handleSubmit} className='w-5/12 flex flex-col gap-8 border-2 border-solid border-gray-500 p-16 rounded-xl'>
+        <form onSubmit={handleSubmit} autoComplete='off' className='w-5/12 flex flex-col gap-8 border-2 border-solid border-gray-500 p-16 rounded-xl'>
           <div className='flex flex-col gap-1'>
             <label className='text-white' htmlFor="email">Email</label>
             <input onChange={handleChange} required className='text-sm border-b-[1px] text-gray-400 outline-none leading-7 border-solid border-slate-500 bg-transparent' id="email" type="email" value={user.email} placeholder='Enter your email'/>

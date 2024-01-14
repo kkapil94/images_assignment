@@ -76,6 +76,7 @@ export default function ImageModal({closeModal}) {
           </button>
         </div>
         <form
+          autoComplete="off"
           onSubmit={handleSubmit}
           ref={formRef}
           className="w-full flex flex-col gap-4 p-8 rounded-xl"
