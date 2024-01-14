@@ -31,7 +31,7 @@ export default function ImageModal({closeModal}) {
     const formData = new FormData(formRef.current);
     try {
       setIsLoading(true)
-      const {data} = await axios.post(`/api/v1/image/add`, formData, {
+      const {data} = await axios.post(`${process.env.VITE_BASE_URL}/api/v1/image/add`, formData, {
         headers: {
           "Authorization": `Bearer ${userToken}`,
           "Content-Type": "multipart/form-data",

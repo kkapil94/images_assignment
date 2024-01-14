@@ -17,7 +17,7 @@ export default function HomePage() {
   const getUser = async () => {
     try {
       const { data } = await axios.get(
-        "http://localhost:4000/api/v1/auth/get-user",
+        `${process.env.VITE_BASE_URL}/api/v1/auth/get-user`,
         {
           headers: {
             Authorization: `Bearer ${userToken}`,

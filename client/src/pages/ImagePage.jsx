@@ -7,7 +7,7 @@ export default function ImagePage({}) {
     const [image,setImage] = useState();
     const userToken = localStorage.getItem("user_token");
     const fetchImage = async ()=>{
-        const {data} = await axios.get(`http://localhost:4000/api/v1/image/image/${imgId}`,{
+        const {data} = await axios.get(`${process.env.VITE_BASE_URL}/api/v1/image/image/${imgId}`,{
             headers:{
                 "Authorization":`Bearer ${userToken}`
             }

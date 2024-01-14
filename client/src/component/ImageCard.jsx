@@ -6,7 +6,7 @@ export default function ImageCard({ image}) {
   const userToken = localStorage.getItem("user_token")
 
   const handleViews = async(id)=>{
-    const data = await axios.post(`/api/v1/image/inc-view/${id}`,{},{
+    const data = await axios.post(`${process.env.VITE_BASE_URL}/api/v1/image/inc-view/${id}`,{},{
       headers:{
         "Authorization":`Bearer ${userToken}`
       }
