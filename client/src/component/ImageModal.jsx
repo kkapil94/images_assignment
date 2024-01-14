@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 
 export default function ImageModal({closeModal}) {
 
+  const baseUrl = import.meta.env.VITE_BASE_URL
   const [pre,setPre] = useState(null)
   const formRef = useRef()
   const notify = toast
@@ -31,7 +32,7 @@ export default function ImageModal({closeModal}) {
     const formData = new FormData(formRef.current);
     try {
       setIsLoading(true)
-      const {data} = await axios.post(`${process.env.VITE_BASE_URL}/api/v1/image/add`, formData, {
+      const {data} = await axios.post(`${baseUrl}/api/v1/image/add`, formData, {
         headers: {
           "Authorization": `Bearer ${userToken}`,
           "Content-Type": "multipart/form-data",

@@ -9,6 +9,7 @@ import ImagesComponent from "../component/ImagesComponent";
 
 export default function HomePage() {
   const userToken = localStorage.getItem("user_token");
+  const baseUrl = import.meta.env.VITE_BASE_URL
   const notify = toast;
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -17,7 +18,7 @@ export default function HomePage() {
   const getUser = async () => {
     try {
       const { data } = await axios.get(
-        `${process.env.VITE_BASE_URL}/api/v1/auth/get-user`,
+        `${baseUrl}/api/v1/auth/get-user`,
         {
           headers: {
             Authorization: `Bearer ${userToken}`,

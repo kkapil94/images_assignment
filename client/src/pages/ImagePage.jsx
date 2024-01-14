@@ -4,10 +4,11 @@ import { useParams } from 'react-router-dom'
 
 export default function ImagePage({}) {
     const {imgId} = useParams();
+    const baseUrl = import.meta.env.VITE_BASE_URL
     const [image,setImage] = useState();
     const userToken = localStorage.getItem("user_token");
     const fetchImage = async ()=>{
-        const {data} = await axios.get(`${process.env.VITE_BASE_URL}/api/v1/image/image/${imgId}`,{
+        const {data} = await axios.get(`${baseUrl}/api/v1/image/image/${imgId}`,{
             headers:{
                 "Authorization":`Bearer ${userToken}`
             }

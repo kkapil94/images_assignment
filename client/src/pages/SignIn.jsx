@@ -6,6 +6,7 @@ import Loader from '../component/Loader';
 
 export default function SignIn() {
 
+  const baseUrl = import.meta.env.VITE_BASE_URL
   const notify = toast
   const navigate = useNavigate()
   const [isLoading,setIsLoading] = useState(false)
@@ -23,7 +24,7 @@ export default function SignIn() {
     e.preventDefault();
     try{
       setIsLoading(true)
-      const {data} =await axios.post(`${process.env.VITE_BASE_URL}/api/v1/auth/login`,user)
+      const {data} =await axios.post(`${baseUrl}/api/v1/auth/login`,user)
       if(data.success) {
         setIsLoading(false)
         localStorage.setItem("user_token",data.token)

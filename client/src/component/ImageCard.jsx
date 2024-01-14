@@ -4,9 +4,10 @@ import { Link } from "react-router-dom";
 
 export default function ImageCard({ image}) {
   const userToken = localStorage.getItem("user_token")
+  const baseUrl = import.meta.env.VITE_BASE_URL
 
   const handleViews = async(id)=>{
-    const data = await axios.post(`${process.env.VITE_BASE_URL}/api/v1/image/inc-view/${id}`,{},{
+    const data = await axios.post(`${baseUrl}/api/v1/image/inc-view/${id}`,{},{
       headers:{
         "Authorization":`Bearer ${userToken}`
       }

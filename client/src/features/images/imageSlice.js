@@ -1,8 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
+const baseUrl = import.meta.env.VITE_BASE_URL
 export const fetchImages = createAsyncThunk("fetchImages", async (token) => {
-  let { data } = await axios.get(`${process.env.VITE_BASE_URL}/api/v1/image/images`, {
+  let { data } = await axios.get(`${baseUrl}/api/v1/image/images`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },

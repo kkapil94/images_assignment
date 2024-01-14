@@ -8,6 +8,7 @@ export default function SignUp() {
 
   const [pre,setPre] = useState(null)
   const [isLoading,setIsLoading] = useState(false)
+  const baseUrl = import.meta.env.VITE_BASE_URL
   const navigate = useNavigate()
   const formRef = useRef()
   const notify = toast
@@ -32,7 +33,7 @@ export default function SignUp() {
     console.log('ok');
     try {
       setIsLoading(true)
-      const {data} = await axios.post(`${process.env.VITE_BASE_URL}/api/v1/auth/register`, formData, {
+      const {data} = await axios.post(`${baseUrl}/api/v1/auth/register`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
