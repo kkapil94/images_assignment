@@ -48,12 +48,12 @@ export default function HomePage() {
                 <img className="w-72 h-72 rounded-full" src={user?.avatar} alt="" />
               </span>
               <div className="text-center mt-4 text-2xl text-white">
-                {user.name}
+                {user?.name}
               </div>
             </div>
             <div className="mt-8 flex gap-8 ">
               <span className="w-32 p-2 text-center text-sm rounded-2xl text-white bg-[#5ccebf]">
-                {images.length} images
+                {images?.length} images
               </span>
               <span className="w-32 p-2 text-center text-sm rounded-2xl text-white bg-[#5ccebf]">
                 {totalViews} views

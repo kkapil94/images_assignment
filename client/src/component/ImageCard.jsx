@@ -22,19 +22,19 @@ export default function ImageCard({ image}) {
         <span>
           <img
             className="rounded-t-2xl w-full h-40 object-cover"
-            src={image.url}
+            src={image?.url}
             alt=""
           />
         </span>
         <div className="xs:max-md:px-4 px-6 xs:max-md:mt-0 mt-4">
           <h4 className="xs:max-md:text-sm text-xl text-white xs:max-md:my-2 my-6">
-            {image.name}
+            {image?.name}
           </h4>
           <p className="xs:max-md:text-xs text-gray-300">
-            {image.description}
+            {image?.description}
           </p>
           <div className="my-6 w-full flex justify-between items-center">
-            <Link to={"image/"+image._id}>
+            <Link to={"image/"+image?._id}>
               <button onClick={()=>handleViews(image._id)} className="group rounded-3xl bg-white  xs:max-md:text-sm xs:max-md:px-2 px-2">
                 Check it out
                 <img
@@ -46,7 +46,7 @@ export default function ImageCard({ image}) {
             </Link>
             <div className="flex gap-2">
               <img className="w-6" src="/img/viewLogo.png" alt="" />
-              <span className="text-white">{image.views}</span>
+              <span className="text-white">{image?.views}</span>
             </div>
           </div>
         </div>

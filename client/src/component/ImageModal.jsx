@@ -91,7 +91,7 @@ export default function ImageModal({closeModal}) {
               className="text-sm border-b-[1px] text-gray-400 outline-none leading-7 border-solid border-slate-500 bg-transparent"
               id="name"
               type="text"
-              value={image.name}
+              value={image?.name}
               placeholder="Enter your full name"
             />
           </div>
@@ -106,7 +106,7 @@ export default function ImageModal({closeModal}) {
               className="text-sm border-b-[1px] text-gray-400 outline-none leading-7 border-solid border-slate-500 bg-transparent"
               id="description"
               type="string"
-              value={image.description}
+              value={image?.description}
               placeholder="Enter the description"
             />
           </div>
@@ -130,7 +130,7 @@ export default function ImageModal({closeModal}) {
                 name="file"
                 type="file"
                 id="img"
-                value={image.img}
+                value={image?.img}
                 onChange={(e) => {
                   handleChange(e);
                   handleSetFile(e);

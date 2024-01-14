@@ -15,7 +15,7 @@ export default function ImagesComponent() {
           {images.length ? (
             <div className="grid justify-items-center grid-cols-3 gap-8 my-20">
               {images?.map((image) => (
-                <ImageCard image={image} key={image._id}/>
+                <ImageCard image={image} key={image?._id}/>
               ))}
             </div>
           ) : (

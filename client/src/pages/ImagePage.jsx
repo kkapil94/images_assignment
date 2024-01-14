@@ -22,12 +22,12 @@ export default function ImagePage({}) {
     <>
         {image&&<div className='flex gap-40 justify-center items-center mt-20'>
             <div>
-                <img className='w-80 h-96 object-contain border-2 rounded-2xl border-solid border-slate-400' src={image.url} alt="" />
+                <img className='w-80 h-96 object-contain border-2 rounded-2xl border-solid border-slate-400' src={image?.url} alt="" />
             </div>
             <div className='flex flex-col gap-16'>
-                <span className='text-4xl text-white'><span className='mr-8 underline underline-offset-6'>Name:</span> {image.name}</span>
-                <span className='text-4xl text-white'><span className='mr-8 underline underline-offset-6'>Description:</span> {image.description}</span>
-                <span className='text-4xl text-white'><span className='mr-8 underline underline-offset-6'>Views:</span> {image.views}</span>
+                <span className='text-4xl text-white'><span className='mr-8 underline underline-offset-6'>Name:</span> {image?.name}</span>
+                <span className='text-4xl text-white'><span className='mr-8 underline underline-offset-6'>Description:</span> {image?.description}</span>
+                <span className='text-4xl text-white'><span className='mr-8 underline underline-offset-6'>Views:</span> {image?.views}</span>
             </div>
         </div>}
     </>
