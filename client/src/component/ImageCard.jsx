@@ -19,9 +19,9 @@ export default function ImageCard({ image}) {
   return (
     <>
       <div className="border-2 xs:max-sm:w-[17rem] sm:max-md:w-80 w-[23rem]  bg-[#0d1b2a] border-solid border-white rounded-2xl">
-        <span>
+        <span className="">
           <img
-            className="rounded-t-2xl w-full h-40 object-cover"
+            className="rounded-t-2xl w-full h-60 object-cover"
             src={image?.url}
             alt=""
           />
@@ -35,7 +35,7 @@ export default function ImageCard({ image}) {
           </p>
           <div className="my-6 w-full flex justify-between items-center">
             <Link to={"image/"+image?._id}>
-              <button onClick={()=>handleViews(image._id)} className="group rounded-3xl bg-white  xs:max-md:text-sm xs:max-md:px-2 px-2">
+              <button onClick={()=>handleViews(image?._id)} className="group rounded-3xl bg-white  xs:max-md:text-sm xs:max-md:px-2 px-2">
                 Check it out
                 <img
                   className="transition-all duration-150 ease-in-out inline group-hover:relative relative left-0 group-hover:left-1 ml-3 xs:max-md:w-4"
