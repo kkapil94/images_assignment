@@ -73,7 +73,7 @@ export default function SignUp() {
           </div>
           <div className='flex flex-col gap-1'>
             <label className='text-white' htmlFor="pass">Password</label>
-            <input name="password" onChange={handleChange} required className='text-sm border-b-[1px] text-gray-400 outline-none leading-7 border-solid border-slate-500 bg-transparent' id="password" type="password" value={user.password} placeholder='Enter your password'/>
+            <input name="password" minLength={6} onChange={handleChange} required className='text-sm border-b-[1px] text-gray-400 outline-none leading-7 border-solid border-slate-500 bg-transparent' id="password" type="password" value={user.password} placeholder='Enter your password'/>
           </div>
           <div>
               <label htmlFor="avatar" className="text-md text-white block">Avatar</label>

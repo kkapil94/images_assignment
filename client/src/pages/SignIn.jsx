@@ -54,7 +54,7 @@ export default function SignIn() {
           </div>
           <div className='flex flex-col gap-1'>
             <label className='text-white' htmlFor="pass">Password</label>
-            <input onChange={handleChange} required className='text-sm border-b-[1px] text-gray-400 outline-none leading-7 border-solid border-slate-500 bg-transparent' id="password" type="password" value={user.password} placeholder='Enter your password'/>
+            <input onChange={handleChange} minLength={6} required className='text-sm border-b-[1px] text-gray-400 outline-none leading-7 border-solid border-slate-500 bg-transparent' id="password" type="password" value={user.password} placeholder='Enter your password'/>
           </div>
           <div className='flex items-center gap-6'>
           <button className='p-2 w-36 text-sm font-normal text-white rounded-3xl bg-[#5ccebf]' type='submit'>SignIn</button>
